@@ -1,21 +1,25 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './component/Header';
+import Sidebar from './component/Sidebar';
+import Homepage from './component/Homepage';
+import DataSiswa from './component/DataSiswa';
+import TambahSiswa from './component/TambahSiswa';
+import EditSiswa from './component/EditSiswa';
+
+import { Route } from 'react-router-dom';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+      <Route exact path="/" component={Homepage}/>
+      <Route path="/Homepage" component={Homepage}/>
+      <Route path="/Header" component={Header}/>
+      <Route path="/DataSiswa" component={DataSiswa}/>
+      <Route path="/TambahSiswa" component={TambahSiswa}/>
+      <Route path="/EditSiswa" component={EditSiswa}/>
       </div>
     );
   }
-}
-
-export default App;
+} export default App;
