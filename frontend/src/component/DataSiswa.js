@@ -1,79 +1,43 @@
 import React, { Component } from 'react';
 import Header from './Header';
 import Sidebar from './Sidebar';
-import { Link, Redirect } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 
 class DataSiswa extends Component {
   state = {
-    dataproduk: [],
+    dataSiswa: [],
 }
 componentDidMount(){
-    axios.get('http://localhost:8002/Product').then(
+    axios.get('http://localhost:8080/ListSiswa').then(
         (ambilData) => {
             console.log(ambilData.data);
             this.setState({
-                dataproduk: ambilData.data
+                dataSiswa: ambilData.data
             });
         }
     )
 }
-
-hapusData = (e) => {
-  axios.post(`http://localhost:8002/RemoveProduct`, {
-      inputNol: e,
-    }).then(
-      (ambilData) => {
-          console.log(ambilData.data);
-          if (ambilData.data === 1) {
-            axios.get('http://localhost:8002/Product').then(
-              (ambilData) => {
-                  console.log(ambilData.data);
-                  this.setState({
-                      dataproduk: ambilData.data
-                  });
-              }
-          )
-          }
-        })
-          console.log(e)
-      }
   
       render() {
-        const hasil = this.state.dataproduk.map(
+        const hasil = this.state.dataSiswa.map(
           (isi, urutan) => {
               var nomor = urutan + 1;
-              var produkID = isi.id;
-              var kategoriID = isi.id_category;
-              var ukuranproduk = isi.id_size;
-              var namaproduk = isi.product_name;
-              var hargaproduk = isi.product_price;
-              var detailproduk = isi.product_detail;
-              var gambarproduk = isi.product_image;
-               
+              var namaSiswa = isi.nama_lengkap;
+              var nomorSiswa = isi.nomor_siswa;
+              var tanggalLahir = isi.tanggal_lahir;
+              var alamat = isi.alamat;
+
               return <tr key={urutan}>
               <td scope="col">{nomor}</td>
-              <td scope="col">{namaproduk}</td>
-              <td scope="col">{kategoriID}</td>
-              <td scope="col">{hargaproduk}</td>
-              <td scope="col">{gambarproduk}</td>
-              <td scope="col">{detailproduk}</td>
+              <td scope="col">{namaSiswa}</td>
+              <td scope="col">{nomorSiswa}</td>
+              <td scope="col">{tanggalLahir}</td>
+              <td scope="col">{alamat}</td>
               <td scope="col">
-                <Link to={{
-                  pathname: "/EditProduct",
-                  state:{
-                    prodID: produkID,
-                    katID: kategoriID,
-                    prodnama: namaproduk,
-                    prodharga: hargaproduk,
-                    prodetail: detailproduk,
-                    prodgarmabar: gambarproduk
-
-
-                  }
-                }}>
-                <button className="btn btn-yellow" style={{fontSize: 12}}><span className="fa fa-edit" aria-hidden="true" /></button></Link>
-                <button type="button" onClick={() => this.hapusData(produkID)}className="btn btn-red" style={{fontSize: 12}}><span className="fa fa-trash" aria-hidden="true" /></button>
+                <button className="btn btn-warning" style={{fontSize: 12}}><span className="fa fa-edit" aria-hidden="true" /></button>
+                <button type="button" className="btn btn-red" style={{fontSize: 12}}><span className="fa fa-trash" aria-hidden="true" /></button>
+                <Link to="/DetailSiswa"><button type="button" className="btn btn-blue" style={{fontSize: 12}}><span className="fa fa-search" aria-hidden="true" /></button></Link>
               </td>
             </tr>
           }
@@ -89,7 +53,7 @@ hapusData = (e) => {
                 <div>
                   <div className="page-title">
                     <div className="title_left">
-                      <h2><b>Data Siswa </b><span><a href="/TambahSiswa"><button className="btn btn-blue">Tambah Siswa + </button></a></span></h2>
+                      <h2><b>Data Siswa </b><span><Link to="/TambahSiswa"><a><button className="btn btn-blue">Tambah Siswa + </button></a></Link></span></h2>
                     </div>
                     <div className="clearfix" />
                     <div className="container">
@@ -104,13 +68,8 @@ hapusData = (e) => {
                                   <th>NAMA LENGKAP</th>
                                   <th>NOMOR SISWA</th>
                                   <th>TANGGAL LAHIR</th>
-                                  <th>TEMPAT LAHIR</th>
-                                  <th>NAMA AYAH</th>
-                                  <th>NAMA IBU</th> 
-                                  <th>AGAMA</th> 
-                                  <th>JENIS KELAMIN</th> 
-                                  <th>ALAMAT</th> 
-                                  <th>CREATED</th> 
+                                  <th>ALAMAT</th>
+                                  <th>ACTIONS</th>
                                 </tr>
                               </thead>
                               <tbody>

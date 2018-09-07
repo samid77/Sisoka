@@ -21,7 +21,7 @@ const secret = 'abcdefg';
 const mysql = require('mysql');
 const db = mysql.createConnection({ 
   host : 'localhost', 
-  port: '3306',
+  port: '8889',
   user : 'root', 
   password : 'root',
   database : 'sisoka',
@@ -45,7 +45,17 @@ app.post('/EditDataSiswa')
 
 app.post('/HapusDataSiswa')
 
-app.get('/ListSiswa')
+app.get('/ListSiswa', (req, res) => {
+  var sql = `SELECT * FROM siswa`;
+  db.query(sql, (err, result) => {
+    if(err) {
+      throw err;
+    } else {
+      res.status(200).send(result);
+    }
+  })
+
+})
 
 // ================================================== CRUD DATA GURU ==================================================
 
