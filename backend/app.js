@@ -15,8 +15,11 @@ app.use(upload());
 var cors = require('cors');
 app.use(cors());
 
-const crypto = require('crypto');
-const secret = 'abcdefg';
+// const crypto = require('crypto');
+// const secret = 'abcdefg';
+// NOTE: We won't use crypto (use bcrypt instead), but I did not delete this code if one day we need it, just un-comment the code
+
+const bcrypt = require('bcrypt');
 
 const mysql = require('mysql');
 const db = mysql.createConnection({ 
@@ -28,17 +31,19 @@ const db = mysql.createConnection({
   multipleStatements: true
 });
 db.connect();
+// NOTE: above is Ichsan db setup. Please comment above code if ur config is different
+// and make ur own config below to make this code also available for you
 
 // ================================================== CRUD DATA SISWA ==================================================
 
 app.post('/TambahDataSiswa', (req, res) => {
   // var data = req.body.namasiswa
 
-  var inputDataSiswa = `INSERT INTO`
-  db.query(inputDataSiswa, (err, result) => {
-    if (err) throw err
-    else res.send('1')
-  })
+  // var inputDataSiswa = `INSERT INTO`
+  // db.query(inputDataSiswa, (err, result) => {
+  //   if (err) throw err
+  //   else res.send('1')
+  // })
 })
 
 app.post('/EditDataSiswa')
