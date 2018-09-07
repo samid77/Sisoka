@@ -19,8 +19,6 @@ app.use(cors());
 // const secret = 'abcdefg';
 // NOTE: We won't use crypto (use bcrypt instead), but I did not delete this code if one day we need it, just un-comment the code
 
-const bcrypt = require('bcrypt');
-
 const mysql = require('mysql');
 const db = mysql.createConnection({ 
   host : 'localhost', 
