@@ -17,20 +17,11 @@ app.use(cors());
 
 // const crypto = require('crypto');
 // const secret = 'abcdefg';
-// NOTE: We won't use crypto (use bcrypt instead), but I did not delete this code if one day we need it, just un-comment the code
+// NOTE: We won't use crypto (use bcryptjs instead), but I did not delete this code if one day we need it, just un-comment the code
 
-const mysql = require('mysql');
-const db = mysql.createConnection({ 
-  host : 'localhost', 
-  port: '8889',
-  user : 'root', 
-  password : 'root',
-  database : 'sisoka',
-  multipleStatements: true
-});
-db.connect();
-// NOTE: above is Ichsan db setup. Please comment above code if ur config is different
-// and make ur own config below to make this code also available for you
+const bcryptjs = require('bcryptjs')
+
+const db = require('./dbconfig/mysqlconnect')
 
 // ================================================== CRUD DATA SISWA ==================================================
 
@@ -49,15 +40,14 @@ app.post('/EditDataSiswa')
 app.post('/HapusDataSiswa')
 
 app.get('/ListSiswa', (req, res) => {
-  var sql = `SELECT * FROM siswa`;
-  db.query(sql, (err, result) => {
+  var DataSiswa = `SELECT * FROM data_siswa`;
+  db.query(DataSiswa, (err, result) => {
     if(err) {
       throw err;
     } else {
       res.status(200).send(result);
     }
   })
-
 })
 
 // ================================================== CRUD DATA GURU ==================================================
@@ -68,7 +58,13 @@ app.post('/EditDataGuru')
 
 app.post('/HapusDataGuru')
 
-app.post('/ListGuru')
+app.get('/ListGuru', (req, res) => {
+  var DataGuru = `SELECT * FROM data_guru`;
+  db.query(DataGuru, (err, result) => {
+    if (err) throw err
+    else res.status(200).send(result);
+  })
+})
 
 // ================================================== CRUD DATA MATERI ==================================================
 
@@ -78,7 +74,14 @@ app.post('/EditMateri')
 
 app.post('/HapusMateri')
 
-app.post('/ListMateri')
+app.get('/ListMateri', (req, res) => {
+  var DataMateri = `SELECT * FROM master_materi`
+  db.query(DataMateri, (err, result) => {
+    if (err) throw err
+    else res.status(200).send(result);
+  })
+})
+
 
 // ================================================== CRUD DATA SUBMATERI ==================================================
 
@@ -88,7 +91,13 @@ app.post('/EditSubMateri')
 
 app.post('/HapusSubMateri')
 
-app.post('/ListSubMateri')
+app.get('/ListSubMateri', (req, res) => {
+  var DataSubMateri = `SELECT * FROM submateri`
+  db.query(DataSubMateri, (err, result) => {
+    if (err) throw err
+    else res.status(200).send(result)
+  })
+})
 
 // ================================================== CRUD DATA JENJANG ==================================================
 
@@ -98,7 +107,13 @@ app.post('/EditJenjang')
 
 app.post('/HapusJenjang')
 
-app.post('/ListJenjang')
+app.get('/ListJenjang', (req, res) => {
+  var DataJenjang = `SELECT * FROM master_jenjang`
+  db.query(DataJenjang, (err, result) => {
+    if (err) throw err
+    else res.status(200).send(result)
+  })
+})
 
 // ================================================== CRUD DATA KELAS ==================================================
 
@@ -108,7 +123,13 @@ app.post('/EditKelas')
 
 app.post('/HapusKelas')
 
-app.post('/ListKelas')
+app.get('/ListNamaKelas', (req, res) => {
+  var DataNamKelas = `SELECT * FROM nama_kelas`
+  db.query(DataNamKelas, (err, result) => {
+    if (err) throw err
+    else res.status(200).send(result)
+  })
+})
 
 // ========================================== CRUD DATA KEGIATAN BELAJAR MENGAJAR (KBM) ==========================================
 
