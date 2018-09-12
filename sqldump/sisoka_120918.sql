@@ -21,8 +21,7 @@ CREATE TABLE `data_guru` (
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `NIP` (`NIP`),
-  KEY `agama_id` (`agama_id`),
-  CONSTRAINT `data_guru_ibfk_1` FOREIGN KEY (`agama_id`) REFERENCES `master_agama` (`id`)
+  KEY `agama_id` (`agama_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `data_guru` (`id`, `nama_lengkap`, `NIP`, `tempat_lahir`, `tanggal_lahir`, `agama_id`, `jenis_kelamin`, `gelar`, `jabatan`, `alamat`, `nomor_telp`, `password`) VALUES
@@ -55,8 +54,7 @@ CREATE TABLE `data_siswa` (
   `nomor_orangtua` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `NIDN` (`NIDN`),
-  KEY `agama_id` (`agama_id`),
-  CONSTRAINT `data_siswa_ibfk_1` FOREIGN KEY (`agama_id`) REFERENCES `master_agama` (`id`)
+  KEY `agama_id` (`agama_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `data_siswa` (`id`, `nama_lengkap`, `NIDN`, `tempat_lahir`, `tanggal_lahir`, `agama_id`, `jenis_kelamin`, `nama_ayah`, `pekerjaan_ayah`, `nama_ibu`, `pekerjaan_ibu`, `alamat`, `nomor_telp`, `nomor_orangtua`) VALUES
@@ -78,8 +76,7 @@ CREATE TABLE `indikator_submateri` (
   `indikator` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `deskripsi` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `submateri_id` (`submateri_id`),
-  CONSTRAINT `indikator_submateri_ibfk_2` FOREIGN KEY (`submateri_id`) REFERENCES `submateri` (`id`)
+  KEY `submateri_id` (`submateri_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `indikator_submateri` (`id`, `submateri_id`, `indikator`, `deskripsi`) VALUES
@@ -105,11 +102,7 @@ CREATE TABLE `jadwal` (
   KEY `nama_kelas_id` (`nama_kelas_id`),
   KEY `hari_id` (`hari_id`),
   KEY `guru_id` (`guru_id`),
-  KEY `materi_id` (`materi_id`),
-  CONSTRAINT `jadwal_ibfk_1` FOREIGN KEY (`nama_kelas_id`) REFERENCES `nama_kelas` (`id`),
-  CONSTRAINT `jadwal_ibfk_2` FOREIGN KEY (`hari_id`) REFERENCES `master_hari` (`id`),
-  CONSTRAINT `jadwal_ibfk_3` FOREIGN KEY (`guru_id`) REFERENCES `data_guru` (`id`),
-  CONSTRAINT `jadwal_ibfk_4` FOREIGN KEY (`materi_id`) REFERENCES `master_materi` (`id`)
+  KEY `materi_id` (`materi_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -120,9 +113,7 @@ CREATE TABLE `manajemen_kelas` (
   `siswa_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `siswa_id` (`siswa_id`),
-  KEY `nama_kelas_id` (`nama_kelas_id`),
-  CONSTRAINT `manajemen_kelas_ibfk_1` FOREIGN KEY (`nama_kelas_id`) REFERENCES `nama_kelas` (`id`),
-  CONSTRAINT `manajemen_kelas_ibfk_2` FOREIGN KEY (`siswa_id`) REFERENCES `data_siswa` (`id`)
+  KEY `nama_kelas_id` (`nama_kelas_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `manajemen_kelas` (`id`, `nama_kelas_id`, `siswa_id`) VALUES
@@ -144,9 +135,7 @@ CREATE TABLE `manajemen_walas` (
   `guru_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `guru_id` (`guru_id`),
-  UNIQUE KEY `nama_kelas_id` (`nama_kelas_id`),
-  CONSTRAINT `manajemen_walas_ibfk_1` FOREIGN KEY (`nama_kelas_id`) REFERENCES `nama_kelas` (`id`),
-  CONSTRAINT `manajemen_walas_ibfk_2` FOREIGN KEY (`guru_id`) REFERENCES `data_guru` (`id`)
+  UNIQUE KEY `nama_kelas_id` (`nama_kelas_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
 
 INSERT INTO `manajemen_walas` (`id`, `nama_kelas_id`, `guru_id`) VALUES
@@ -247,8 +236,7 @@ CREATE TABLE `nama_kelas` (
   `jenjang_id` int(11) NOT NULL,
   `nama_kelas` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `jenjang_id` (`jenjang_id`),
-  CONSTRAINT `nama_kelas_ibfk_1` FOREIGN KEY (`jenjang_id`) REFERENCES `master_jenjang` (`id`)
+  KEY `jenjang_id` (`jenjang_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `nama_kelas` (`id`, `jenjang_id`, `nama_kelas`) VALUES
@@ -269,9 +257,7 @@ CREATE TABLE `pengajar_materi` (
   `materi_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `guru_id` (`guru_id`),
-  KEY `materi_id` (`materi_id`),
-  CONSTRAINT `pengajar_materi_ibfk_1` FOREIGN KEY (`guru_id`) REFERENCES `data_guru` (`id`),
-  CONSTRAINT `pengajar_materi_ibfk_2` FOREIGN KEY (`materi_id`) REFERENCES `master_materi` (`id`)
+  KEY `materi_id` (`materi_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `pengajar_materi` (`id`, `guru_id`, `materi_id`) VALUES
@@ -295,9 +281,7 @@ CREATE TABLE `submateri` (
   `deskripsi` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `materi_id` (`materi_id`),
-  KEY `jenjang_id` (`jenjang_id`),
-  CONSTRAINT `submateri_ibfk_1` FOREIGN KEY (`materi_id`) REFERENCES `master_materi` (`id`),
-  CONSTRAINT `submateri_ibfk_2` FOREIGN KEY (`jenjang_id`) REFERENCES `master_jenjang` (`id`)
+  KEY `jenjang_id` (`jenjang_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 INSERT INTO `submateri` (`id`, `materi_id`, `jenjang_id`, `submateri`, `deskripsi`) VALUES
@@ -312,4 +296,4 @@ INSERT INTO `submateri` (`id`, `materi_id`, `jenjang_id`, `submateri`, `deskrips
 (9,	3,	1,	'Stoikiometri',	'Kimia'),
 (10,	7,	2,	'Sejarah Proklamasi',	'Sejarah');
 
--- 2018-09-12 07:11:30
+-- 2018-09-12 07:19:34
