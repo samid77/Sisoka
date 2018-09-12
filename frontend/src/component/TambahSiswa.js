@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
@@ -8,9 +6,7 @@ class TambahSiswa extends Component {
   render() {
     return (
       <div className="wrapper">
-        <Sidebar />
         <div id="content" className="animico-txt3b">
-          <Header />
           <div  className="animico-txt3" role="main" style={{marginTop: 100}}>
 
             <div className="page-title">

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Sidebar from './Sidebar';
 import { Link, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -170,8 +169,6 @@ kirimsemua = (e) => {
         return (
 
             <div className="wrapper">
-                {/* Sidebar  */}
-                <Sidebar />
                 {/* Page Content  */}
                 <div id="content">
                     <div className="right_col" role="main">

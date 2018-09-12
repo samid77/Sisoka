@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import Sidebar from './Sidebar';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
+
+import {FaEdit, FaTrash, FaSearch} from 'react-icons/fa'
 
 class DataSiswa extends Component {
   state = {
@@ -24,7 +24,7 @@ componentDidMount(){
           (isi, urutan) => {
               var nomor = urutan + 1;
               var namaSiswa = isi.nama_lengkap;
-              var nomorSiswa = isi.nomor_siswa;
+              var nomorSiswa = isi.NIDN;
               var tanggalLahir = isi.tanggal_lahir;
               var alamat = isi.alamat;
 
@@ -35,28 +35,25 @@ componentDidMount(){
               <td scope="col">{tanggalLahir}</td>
               <td scope="col">{alamat}</td>
               <td scope="col">
-                <button className="btn btn-warning" style={{fontSize: 12}}><span className="fa fa-edit" aria-hidden="true" /></button>
-                <button type="button" className="btn btn-red" style={{fontSize: 12}}><span className="fa fa-trash" aria-hidden="true" /></button>
-                <Link to="/DetailSiswa"><button type="button" className="btn btn-blue" style={{fontSize: 12}}><span className="fa fa-search" aria-hidden="true" /></button></Link>
+                <button className="btn btn-warning" style={{fontSize: 12}}><FaEdit/></button>
+                <button type="button" className="btn btn-red" style={{fontSize: 12}}><FaTrash/></button>
+                <Link to="/DetailSiswa"><button type="button" className="btn btn-blue" style={{fontSize: 12}}><FaSearch/></button></Link>
               </td>
             </tr>
           }
       );
         return (
           <div className="wrapper">
-            {/* Sidebar  */}
-            <Sidebar />
             {/* Page Content  */}
             <div id="content" className="animico-txt3b">
-            <Header />
               <div  className="animico-txt3" role="main" style={{marginTop: 100}}>
                 <div>
                   <div className="page-title">
                     <div className="title_left">
-                      <h2><b>Data Siswa </b><span><Link to="/TambahSiswa"><a><button className="btn btn-blue">Tambah Siswa + </button></a></Link></span></h2>
                     </div>
                     <div className="clearfix" />
                     <div className="container">
+                    <h2><b>Data Siswa </b><span><Link to="/tambah-siswa"><a><button className="btn btn-blue">Tambah Siswa + </button></a></Link></span></h2>
                     <div className="row">
                       <div className="col-md-12">
                         <div className="x_panel">
