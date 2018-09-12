@@ -21,7 +21,7 @@ app.use(cors());
 
 const bcryptjs = require('bcryptjs')
 
-const db = require('./dbconfig/mysqlconnect')
+const db = require('./dbconfig/mysqlconnect');
 
 // ================================================== CRUD DATA SISWA ==================================================
 
@@ -54,10 +54,26 @@ app.get('/ListSiswa', (req, res) => {
 
 app.post('/TambahDataGuru', (req, res) => 
 {
+  // var nama_lengkap = req.body.nama_lengkap
+  // var NIP = req.body.NIP
+  // var tempat_lahir = req.body.tempat_lahir
+  // var tanggal_lahir = req.body.tanggal_lahir
+  // var agama_id = req.body.agama_id
+  // var jenis_kelamin = req.body.jenis_kelamin
+  // var gelar = req.body.gelar
+  // var jabatan = req.body.jabatan
+  // var alamat = req.body.alamat
+  // var nomor_telp = req.body.nomor_telp
+
   // var addDataGuru = `INSERT INTO data_guru (nama_lengkap, NIP, tempat_lahir,
   // tanggal_lahir, agama_id, jenis_kelamin, gelar, jabatan,
   // alamat, nomor_telp, password) VALUES ("${nama_lengkap}", "${NIP}", "${tempat_lahir}", "${tanggal_lahir}",
   // "${agama_id}", "${jenis_kelamin}", "${gelar}", "${jabatan}", "${alamat}", "${nomor_telp}", "${NIP}")`
+  // db.query(addDataGuru, (err, result) => 
+  // {
+  //   if (err) throw err
+  //   else res.status(200).send('1')
+  // })
 })
 
 app.post('/EditDataGuru')
@@ -152,6 +168,8 @@ app.post('/ListKBM')
 
 // ========================================== PORT LISTEN TO 3001 ==========================================
 
-app.listen(8080);
+app.listen(8080, (req, res) =>{
+  console.log(`Server started ...`)
+});
 
 
