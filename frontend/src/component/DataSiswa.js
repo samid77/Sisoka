@@ -9,7 +9,7 @@ class DataSiswa extends Component {
     dataSiswa: [],
 }
 componentDidMount(){
-    axios.get('http://localhost:8080/ListSiswa').then(
+    axios.get('http://localhost:8080/api/siswa/ListSiswa').then(
         (ambilData) => {
             console.log(ambilData.data);
             this.setState({
