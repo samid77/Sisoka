@@ -52,15 +52,25 @@ app.get('/ListSiswa', (req, res) => {
 
 // ================================================== CRUD DATA GURU ==================================================
 
-app.post('/TambahDataGuru')
+app.post('/TambahDataGuru', (req, res) => 
+{
+  // var addDataGuru = `INSERT INTO data_guru (nama_lengkap, NIP, tempat_lahir,
+  // tanggal_lahir, agama_id, jenis_kelamin, gelar, jabatan,
+  // alamat, nomor_telp, password) VALUES ("${nama_lengkap}", "${NIP}", "${tempat_lahir}", "${tanggal_lahir}",
+  // "${agama_id}", "${jenis_kelamin}", "${gelar}", "${jabatan}", "${alamat}", "${nomor_telp}", "${NIP}")`
+})
 
 app.post('/EditDataGuru')
 
 app.post('/HapusDataGuru')
 
-app.get('/ListGuru', (req, res) => {
-  var DataGuru = `SELECT * FROM data_guru`;
-  db.query(DataGuru, (err, result) => {
+app.get('/ListGuru', (req, res) => 
+{
+  var DataGuru = `SELECT data_guru.id, data_guru.nama_lengkap, data_guru.NIP, data_guru.tempat_lahir, data_guru.tanggal_lahir,
+  master_agama.agama, data_guru.jenis_kelamin, data_guru.gelar, data_guru.jabatan,
+  data_guru.alamat, data_guru.nomor_telp FROM data_guru JOIN master_agama ON data_guru.agama=master_agama.id`;
+  db.query(DataGuru, (err, result) => 
+  {
     if (err) throw err
     else res.status(200).send(result);
   })
@@ -81,7 +91,6 @@ app.get('/ListMateri', (req, res) => {
     else res.status(200).send(result);
   })
 })
-
 
 // ================================================== CRUD DATA SUBMATERI ==================================================
 
