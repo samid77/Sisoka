@@ -21,7 +21,7 @@ app.use(cors());
 
 const bcryptjs = require('bcryptjs')
 
-const db = require('./dbconfig/mysqlconnect')
+const db = require('./dbconfig/mysqlconnect');
 
 // ================================================== CRUD DATA SISWA ==================================================
 
@@ -143,6 +143,8 @@ app.post('/ListKBM')
 
 // ========================================== PORT LISTEN TO 3001 ==========================================
 
-app.listen(8080);
+app.listen(8080, (req, res) =>{
+  console.log(`Server started ...`)
+});
 
 

@@ -10,7 +10,7 @@ class Sidebar extends Component {
         <nav id="sidebar">
             <ul className="list-unstyled components" style={{marginTop: 100}}>
                 <li className="active" style={{marginLeft: 30}}>
-                <a href="/"><span className="fa fa-tachometer-alt" style={{color: '#6e829b)', marginRight: 17}} />DASHBOARD</a>
+                <a><span className="fa fa-tachometer-alt" style={{color: '#6e829b)', marginRight: 17}} />DASHBOARD</a>
                 </li>
                 <div className="line2" style={{marginLeft: 30}}/>
                 <li style={{marginLeft: 30}}>
