@@ -2,18 +2,18 @@ const express = require('express');
 const router = express.Router();
 
 /**
- * @route GET api/Materi/test
- * @desc Test Materi route
+ * @route GET api/materi/testmateri
+ * @desc Test Materi Route
  * @access Public
  */
 
- router.get('/test', (req, res) => {
-     res.json({msg: 'Materi route success'});
- })
+router.get('/testmateri', (req, res) => {
+  res.json({msg: 'Materi route success'});
+})
 
 /**
- * @route POST api/Materi/TambahMateri
- * @desc Tambah data materi
+ * @route POST api/materi/TambahMateri
+ * @desc Tambah Data Materi
  * @access Public
  */
 
@@ -22,8 +22,8 @@ router.post('/TambahMateri', (req, res) => {
 })
 
 /**
- * @route POST api/Materi/EditMateri
- * @desc Edit data materi
+ * @route POST api/materi/EditMateri
+ * @desc Edit Data Materi
  * @access Public
  */
 
@@ -31,10 +31,9 @@ router.post('/EditMateri', (req, res) => {
 
 })
 
-
 /**
- * @route POST api/Materi/HapusMateri
- * @desc Hapus data materi
+ * @route POST api/materi/HapusMateri
+ * @desc Hapus Data Materi
  * @access Public
  */
 
@@ -42,10 +41,9 @@ router.post('/HapusMateri', (req, res) => {
 
 })
 
-
 /**
- * @route GET api/Materi/ListMateri
- * @desc List data materi
+ * @route GET api/materi/ListMateri
+ * @desc List Data Materi
  * @access Public
  */
 
@@ -57,9 +55,11 @@ router.get('/ListMateri', (req, res) => {
   })
 })
 
+// ======================================================= SUB - MATERI =======================================================
+
 /**
- * @route POST api/Materi/TambahSubMateri
- * @desc Tambah data sub-materi
+ * @route POST api/materi/TambahSubMateri
+ * @desc Tambah Data Sub-materi
  * @access Public
  */
 
@@ -68,8 +68,8 @@ router.post('/TambahSubMateri', (req, res) => {
 })
 
 /**
- * @route POST api/Materi/EditSubMateri
- * @desc Edit data sub-materi
+ * @route POST api/materi/EditSubMateri
+ * @desc Edit Data Sub-materi
  * @access Public
  */
 
@@ -78,8 +78,8 @@ router.post('/EditSubMateri', (req, res) => {
 })
 
 /**
- * @route POST api/Materi/HapusSubMateri
- * @desc Hapus data sub-materi
+ * @route POST api/materi/HapusSubMateri
+ * @desc Hapus Data Sub-materi
  * @access Public
  */
 
@@ -88,8 +88,8 @@ router.post('/HapusSubMateri', (req, res) => {
 })
 
 /**
- * @route POST api/Materi/ListSubMateri
- * @desc List data sub-materi
+ * @route GET api/materi/ListSubMateri
+ * @desc List Data Sub-materi
  * @access Public
  */
 
@@ -101,4 +101,4 @@ router.get('/ListSubMateri', (req, res) => {
   })
 })
 
- module.exports = router;
+module.exports = router;
