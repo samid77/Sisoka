@@ -34,9 +34,9 @@ const kelas = require('./routes/api/kelas');
 const materi = require('./routes/api/materi');
 const siswa = require('./routes/api/siswa');
 
-app.use('/api/guru', guru);
-app.use('/api/jenjang', jenjang);
-app.use('/api/kbm', kbm);
-app.use('/api/kelas', kelas);
-app.use('/api/materi', materi);
-app.use('/api/siswa', siswa);
+app.use(guru);
+app.use(jenjang);
+app.use(kbm);
+app.use(kelas);
+app.use(materi);
+app.use(siswa);
