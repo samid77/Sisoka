@@ -50,3 +50,5 @@ router.post('/HapusKBM', (req, res) => {
 router.get('/ListKBM', (req, res) => {
     
 })
+
+module.exports = router;
