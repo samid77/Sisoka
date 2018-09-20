@@ -1,19 +1,12 @@
 import React, { Component } from 'react';
-import Header from './component/Layout/Header';
-import Sidebar from './component/Layout/Sidebar';
-import Page from './component/Layout/Page';
-import Homepage from './component/Homepage';
-import DataSiswa from './component/DataSiswa';
-import TambahSiswa from './component/TambahSiswa';
-import EditSiswa from './component/EditSiswa';
-
 import { BrowserRouter, Redirect, Switch } from 'react-router-dom';
 
-import LayoutRoute from './component/Layout/LayoutRoute'
-import MainLayout from './component/Layout/MainLayout'
+import LayoutRoute from './components/LayoutRoute'
 
-import './css/style.css';
-import './css/tai.css';
+import MainLayout from './views/MainLayout'
+import Homepage from './views/Homepage';
+import DataGuru from './views/DataGuru';
+import DataSiswa from './views/DataSiswa';
 
 
 
@@ -36,9 +29,9 @@ class App extends Component {
             />
             <LayoutRoute
               exact
-              path="/tambah-siswa"
+              path="/data-pengajar"
               layout={MainLayout}
-              component={TambahSiswa}
+              component={DataGuru}
             />
             <Redirect to="/" />
           </Switch>
